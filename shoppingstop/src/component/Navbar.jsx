@@ -3,7 +3,7 @@ import React from "react";
 const Navbar = () => {
     return(
         <div>
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary py-3 shadow-sm">
   <div class="container-fluid">
     <a class="navbar-brand fw-bold fs-4" href="#">
         ShoppingStop
@@ -37,7 +37,6 @@ const Navbar = () => {
             <i className="fa fa-cart-arrow-down me-1"> Cart</i>
         </a>
       </div>
-
     </div>
   </div>
 </nav>
