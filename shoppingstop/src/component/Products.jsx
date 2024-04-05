@@ -15,7 +15,7 @@ const Products = () => {
           throw new Error("Network response was not ok.");
         }
         const jsonData = await response.json(); // Await the response.json() call
-        console.log("Fetched data:", jsonData["products"]); // Log fetched data
+        // console.log("Fetched data:", jsonData["products"]); // Log fetched data
         if (componentMounted) {
           setData(jsonData["products"]);
           setFilter(jsonData["products"]); // Initialize filter with all products
@@ -51,13 +51,13 @@ const Products = () => {
           <button className="btn btn-outline-dark me-3">Other</button>
         </div>
         {filter.map((product) => (
-          <div className="col-md-3" key={product.id}>
-            <div className="card">
-              <img src={product.images[0]} className="card-img-top" alt={product.title} />
+          <div className="col-md-3 mb-4">
+            <div className="card h-100 text-center p-4" key={product.id}>
+              <img src={product.images[0]} className="card-img-top" alt={product.title} height="250px"/>
               <div className="card-body">
-                <h5 className="card-title">{product.title}</h5>
-                <p className="card-text">${product.price}</p>
-                <a href="" className="btn btn-primary">Go somewhere</a>
+                <h5 className="card-title mb-0 ">{product.title}</h5>
+                <p className="card-text lead fw-bold">${product.price}</p>
+                <a href="#" className="btn btn-outline-dark">Buy Now</a>
               </div>
             </div>
           </div>
