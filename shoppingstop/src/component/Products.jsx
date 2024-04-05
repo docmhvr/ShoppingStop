@@ -16,7 +16,8 @@ const Products = () => {
           throw new Error("Network response was not ok.");
         }
         const jsonData = await response.json(); // Await the response.json() call
-        // console.log("Fetched data:", jsonData["products"]); // Log fetched data
+        console.log("Fetched data:", jsonData["products"]); // Log fetched data
+        console.log("Fetched data:", jsonData["products"]["category"]); // Log fetched data
         if (componentMounted) {
           setData(jsonData["products"]);
           setFilter(jsonData["products"]); // Initialize filter with all products
@@ -38,16 +39,16 @@ const Products = () => {
     return (
       <>
         <div className="col-md-3">
-          <Skeleton height={300}/>
+          <Skeleton height={320}/>
         </div>
         <div className="col-md-3">
-          <Skeleton height={300}/>
+          <Skeleton height={320}/>
         </div>
         <div className="col-md-3">
-          <Skeleton height={300}/>
+          <Skeleton height={320}/>
         </div>
         <div className="col-md-3">
-          <Skeleton height={300}/>
+          <Skeleton height={320}/>
         </div>
       </>
     );
@@ -55,11 +56,19 @@ const Products = () => {
 
 
   const filterProduct = (cat) => {
-    //based on dummy json category...................................................TODO
-    const updatedList = data.filter((x)=>x.products.category === cat)
+    let updatedList;
+    if (cat === "Electronics") {
+      const categories = ["smartphones", "laptops"];
+      updatedList = data.filter((product) => categories.includes(product.category));
+    } else if (cat === "Cosmetics") {
+      const categories = ["fragrances", "skincare"];
+      updatedList = data.filter((product) => categories.includes(product.category));
+    } else {
+      const categories = ["fragrances", "skincare", "smartphones", "laptops"];
+      updatedList = data.filter((product) => !categories.includes(product.category));
+    }
     setFilter(updatedList);
   }
-
 
   const ShowProducts = () => {
     return (
@@ -67,12 +76,12 @@ const Products = () => {
         <div className="buttons d-flex justify-content-center mb-5 pb-5">
           <button className="btn btn-outline-dark me-2" onClick={() => setFilter(data)}>All</button>
           <button className="btn btn-outline-dark me-2"  onClick={() => filterProduct("Electronics")}>Electronics</button>
-          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("Accessories")}>Accessories</button>
+          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("Cosmetics")}>Cosmetics</button>
           <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("Other")}>Other</button>
         </div>
-        {filter.map((product) => (
-          <div className="col-md-3 mb-4">
-            <div className="card h-100 text-center p-4" key={product.id}>
+          {filter.map((product) => (
+          <div className="col-md-3 mb-4" key={product.id}>
+            <div className="card h-100 text-center p-4">
               <img src={product.images[0]} className="card-img-top" alt={product.title} height="250px"/>
               <div className="card-body">
                 <h5 className="card-title mb-0 ">{product.title}</h5>
