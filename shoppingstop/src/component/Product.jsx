@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addItem } from "../redux/action";
+import { addItem } from "../redux/actions";
 import { NavLink, useParams } from "react-router-dom";
 import Skeleton from 'react-loading-skeleton';
 

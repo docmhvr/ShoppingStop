@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { delItem} from '../redux/action/index';
+import { delItem} from '../redux/actions/index';
 import { NavLink } from 'react-router-dom';
 
 
 
 const Cart = () => {
-    const state = useSelector((state)=> state.addItem || []);
+    const order = useSelector((state)=> state.handleCart);
     const dispatch = useDispatch();
 
     const handleClose = (item) => {
@@ -21,7 +21,7 @@ const Cart = () => {
                     <button onClick={()=>handleClose(cartItem)} className="btn-close float-end" aria-label="Close"></button>
                     <div className="row justify-content-center">
                         <div className="col-md-4">
-                            <img src={cartItem.img} alt={cartItem.title} height="200px" width="180px" />
+                            <img src={cartItem.images[0]} alt={cartItem.title} height="200px" width="180px" />
                         </div>
                         <div className="col-md-4">
                             <h3>{cartItem.title}</h3>
@@ -57,9 +57,9 @@ const Cart = () => {
 
     return (
         <>
-            {state.length === 0 && emptyCart()}
-            {state.length !== 0 && state.map(cartItems)}
-            {state.length !== 0 && button()}
+            {order.length === 0 && emptyCart()}
+            {order.length !== 0 && order.map(cartItems)}
+            {order.length !== 0 && button()}
         </>
     );
 };
