@@ -3,7 +3,7 @@ import Products from "./Products";
 
 const Home = () => {
     return (
-        <div className="hero">
+        <>
             <div className="card text-bg-dark border-0">
                 <img src="/assets/bg.jpg" className="card-img" alt="Background" height="720px"/>
                 <div className="card-img-overlay d-flex flex-column">
@@ -13,8 +13,8 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <Products/>
-        </div>
+            <Products />
+        </>
     );
 };
 

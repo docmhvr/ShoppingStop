@@ -1,16 +1,12 @@
-// Adding Items to Cart
-
-export const addCart = (product) => {
-    return{
+export const addItem = (product) => {
+    return {
         type : "ADDITEM",
         payload : product
     }
 }
 
-// Deleting Items to Cart
-
-export const delCart = (product) => {
-    return{
+export const delItem = (product) => {
+    return {
         type : "DELITEM",
         payload : product
     }
