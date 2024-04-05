@@ -11,7 +11,7 @@ export const addCart = (product) => {
 
 export const delCart = (product) => {
     return{
-        type : "DELITEM"
+        type : "DELITEM",
         payload : product
     }
 }

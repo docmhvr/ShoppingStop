@@ -1,7 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { UseSelector, useSelector } from "react-redux";
 
 const Navbar = () => {
+    const state = useSelector((state)=> state.handleCart)
     return (
         <div>
             <nav className="navbar navbar-expand-lg bg-body-tertiary py-3 shadow-sm">
