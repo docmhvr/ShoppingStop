@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Skeleton from 'react-loading-skeleton';
 
 const Products = () => {
   const [data, setData] = useState([]);
@@ -36,19 +37,38 @@ const Products = () => {
   const Loading = () => {
     return (
       <>
-        Loading...
+        <div className="col-md-3">
+          <Skeleton height={300}/>
+        </div>
+        <div className="col-md-3">
+          <Skeleton height={300}/>
+        </div>
+        <div className="col-md-3">
+          <Skeleton height={300}/>
+        </div>
+        <div className="col-md-3">
+          <Skeleton height={300}/>
+        </div>
       </>
     );
   };
+
+
+  const filterProduct = (cat) => {
+    //based on dummy json category...................................................TODO
+    const updatedList = data.filter((x)=>x.products.category === cat)
+    setFilter(updatedList);
+  }
+
 
   const ShowProducts = () => {
     return (
       <>
         <div className="buttons d-flex justify-content-center mb-5 pb-5">
-          <button className="btn btn-outline-dark me-3">All</button>
-          <button className="btn btn-outline-dark me-3">Electronics</button>
-          <button className="btn btn-outline-dark me-3">Accessories</button>
-          <button className="btn btn-outline-dark me-3">Other</button>
+          <button className="btn btn-outline-dark me-2" onClick={() => setFilter(data)}>All</button>
+          <button className="btn btn-outline-dark me-2"  onClick={() => filterProduct("Electronics")}>Electronics</button>
+          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("Accessories")}>Accessories</button>
+          <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("Other")}>Other</button>
         </div>
         {filter.map((product) => (
           <div className="col-md-3 mb-4">
